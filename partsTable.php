@@ -38,21 +38,26 @@
                 </tbody>
             </table>
 
-            <form method="POST" action="partstable.php">
+            <form method="POST" action="partsTable.php">
                 <h3>Добавление запасной части</h3>
-                <p>
-                    <label for="partName">Название детали</label>
-                    <input id="partName" type="text" name="partName">
-                </p>
-                <p>
-                    <label for="cost">Стоимость</label>
-                    <input id="cost" type="number" min="1" name="cost">
-                </p>
-                <p>
-                    <label for="inStock">Количество</label>
-                    <input id="inStock" type="number" min="1" name="inStock">
-                </p>
-                <button type="submit">Создать</button>
+                <table>
+                    <tr>
+                        <td><label for="partName">Название детали</label></td>
+                        <td><input id="partName" type="text" name="partName"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="cost">Стоимость</label></td>
+                        <td><input id="cost" type="number" min="1" name="cost"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="inStock">Количество</label></td>
+                        <td><input id="inStock" type="number" min="1" name="inStock"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button type="submit">Создать</button></td>
+                    </tr>
+                </table>
             </form>
 
         </div>
