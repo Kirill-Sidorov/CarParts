@@ -10,8 +10,7 @@
                 $conn = new PDO("mysql:host=localhost;dbname=carparts", "carparts_user", "111", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
                 $sql = "INSERT INTO parts (partName, cost, inStock) VALUES ('$partName', $cost, $inStock)";
                 $conn->exec($sql);
-            }
-            catch (PDOException $e) {
+            } catch (PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
             }
             header( "Location: https://localhost/carparts/catalog.php", true, 303 );
@@ -24,7 +23,7 @@
 <html>
     <head>
         <meta charset=UTF-8>
-        <title>addpart</title>
+        <title>Добавить запасную часть</title>
     </head>
     <body>
         <div align="center">
