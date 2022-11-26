@@ -1,0 +1,7 @@
+My file
+String1
+String2
+String3
+String4
+String5
+New string

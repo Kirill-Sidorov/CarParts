@@ -1,25 +1,27 @@
-<!DOCTYPE html>
 <?php
+    include_once "utils/checkuser.php";
+    if ($_SESSION['userRole'] !== "ADMIN") {
+        header( "Location: https://localhost/carparts/catalog.php", true, 303);
+        exit();
+    }
     $request_method = strtoupper($_SERVER['REQUEST_METHOD']);
     if ($request_method === 'POST') {
         $partName = $_POST["partName"];
         $cost = $_POST["cost"];
         $inStock = $_POST["inStock"];
         if (strlen($partName) > 0 and $cost > 0 and $inStock > 0) {
-            try {
-                $conn = new PDO("mysql:host=localhost;dbname=carparts", "carparts_user", "111", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-                $sql = "INSERT INTO parts (partName, cost, inStock) VALUES ('$partName', $cost, $inStock)";
-                $conn->exec($sql);
-            } catch (PDOException $e) {
-                echo "Connection failed: " . $e->getMessage();
+            $dbConnection = mysqli_connect("localhost", "carparts_user", "111", "carparts");
+            if ($dbConnection != false) {
+                mysqli_query($dbConnection, "INSERT INTO parts (partName, cost, inStock) VALUES ('$partName', $cost, $inStock)");
+                header( "Location: https://localhost/carparts/catalog.php", true, 303);
+                exit();
             }
-            header( "Location: https://localhost/carparts/catalog.php", true, 303 );
-        } else {
-            header( "Location: https://localhost/carparts/addpart.php", true, 303 );
         }
+        header( "Location: https://localhost/carparts/addpart.php", true, 303);
         exit();
     }
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset=UTF-8>
